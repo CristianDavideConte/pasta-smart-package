@@ -2,9 +2,19 @@ import Head from 'next/head'
 import CustomImage from '../common/components/CustomImage'
 
 import Image from "next/image"
-import testImage from "../common/static/pasta.png"
+import testImage from "../public/images/pasta.png"
+import CustomImageProps from '../common/classes/CustomImageProps'
 
 export default function Home() {
+  const customImage = CustomImage(
+    new CustomImageProps(
+      "/images/pasta.png", 
+      100, 
+      100,
+      "Test description"
+    )
+  );
+
   return (
     <>
       <Head>
@@ -13,18 +23,7 @@ export default function Home() {
         <link rel="icon" href={`${process.env.NEXT_PUBLIC_FAVICON}/favicon.ico`} />
       </Head>
 
-      <Image 
-        src = {testImage} 
-        alt = "picture of pasta"
-        width={100} height={100}
-      />
+      {customImage}
     </>
   )
 }
-
-/*
- 
-
-
- */
-//<CustomImage imagePath="../common/static/pasta.png" description="Test description"/>

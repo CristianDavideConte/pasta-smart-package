@@ -1,16 +1,16 @@
-import Image from "next/image"
+import CustomImageProps from "../classes/CustomImageProps"
 
-export default function CustomImage(imagePath: string, description: string) {
+const CustomImage = (props: CustomImageProps) => {
+    const imagePath = props.getPath();
+    const imageDescription = props.getDescription();
+    const image = props.createImage();
+    
     return(
-        <>
-            <div className="custom-image-container">
-                <Image 
-                    src = {imagePath}
-                    alt = {description}
-                    priority
-                />
-                <p>{description}</p>
-            </div>
-        </>
+        <div className="custom-image-container">
+            {image}            
+            <p>{imageDescription}</p>
+        </div>
     );
 }
+
+export default CustomImage;
