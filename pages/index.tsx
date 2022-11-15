@@ -16,6 +16,7 @@ export default function Home() {
       <Image 
         src = {testImage} 
         alt = "picture of pasta"
+        width={100} height={100}
       />
     </>
   )
