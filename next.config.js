@@ -6,7 +6,8 @@ const nextConfig = {
     loader: "akamai",
     path: ""
   },
-  
+  basePath: "/pasta-smart-package",
+  assetPrefix: "/pasta-smart-package"
 }
 
 module.exports = nextConfig
