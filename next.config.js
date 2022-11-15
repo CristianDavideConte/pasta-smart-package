@@ -6,9 +6,9 @@ const nextConfig = {
   assetPrefix: "/pasta-smart-package", //Uncomment when pushing to github
   
   images: {
-    unoptimized: true
     //loader: "akamai",
-    //path: ""
+    unoptimized: true,
+    path: ""
   },
 }
 
