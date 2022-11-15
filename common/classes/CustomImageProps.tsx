@@ -14,12 +14,11 @@ class CustomImageProps {
     }
 
     createImage() {
-        return <Image
+        return <img
             src={this.path}
             width={this.width}
             height={this.height}
             alt={this.description}
-            priority
         />
     }
 

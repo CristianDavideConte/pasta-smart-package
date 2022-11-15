@@ -1,7 +1,6 @@
 import CustomImageProps from "../classes/CustomImageProps"
 
 const CustomImage = (props: CustomImageProps) => {
-    const imagePath = props.getPath();
     const imageDescription = props.getDescription();
     const image = props.createImage();
     
