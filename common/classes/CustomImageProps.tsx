@@ -1,25 +1,44 @@
-import Image from "next/image" 
-
 class CustomImageProps {
     private path: string;
     private width: number;
     private height: number;
     private description: string;
+    private isDescriptionShown: boolean;
 
-    constructor(path: string, width: number, height: number, description: string) {
+    constructor(
+        path: string, 
+        description: string, 
+        width: number, 
+        height: number, 
+        isDescriptionShown: boolean = false,
+    ) {
         this.path = path;
+        this.description = description;
         this.width = width;
         this.height = height;
-        this.description = description;
+        this.isDescriptionShown = isDescriptionShown;
     }
 
     createImage() {
         return <img
+            className = "custom-image"
             src={this.path}
-            width={this.width}
-            height={this.height}
             alt={this.description}
+            width={this.width}
+            height={this.height} 
         />
+    }
+
+    getDescriptionShown() : boolean {
+        return this.isDescriptionShown;
+    }
+
+    showDescription() {
+        this.isDescriptionShown = true;
+    }
+
+    hideDescription() {
+        this.isDescriptionShown = false;
     }
 
     getPath() : string{ 

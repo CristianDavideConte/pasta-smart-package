@@ -6,12 +6,51 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+body > #__next {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+button {
+  border: none;
+  width: 5rem;
+  height: 5rem;
+  font-size: 3rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
+#custom-images-inner-carousel {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: both mandatory;
+  flex-shrink: 0;
+}
+
+#custom-images-inner-carousel > * {
+  scroll-snap-align: center;
+}
+
+#custom-images-outer-carousel {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
