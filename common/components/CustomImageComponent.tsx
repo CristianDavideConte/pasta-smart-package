@@ -1,14 +1,19 @@
 import CustomImageProps from "../classes/CustomImageProps"
 
 const CustomImage = (props: CustomImageProps) => {
-    const imageDescription = props.getDescription();
     const image = props.createImage();
-    const description = props.getDescriptionShown() ? <p>{imageDescription}</p> : <></>;
+    const classNames = props.getAdditionalClassNames();
+    classNames.push("custom-image-container");
+
+    const className = classNames.reduce((prev, curr, index) => {
+        return prev + " " + curr;
+    }, "");
+
+    console.log(className);
     
     return(
-        <div className="custom-image-container">
-            {image}            
-            {description}
+        <div className={className}>
+            {image}        
         </div>
     );
 }

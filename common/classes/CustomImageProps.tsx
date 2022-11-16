@@ -4,6 +4,7 @@ class CustomImageProps {
     private height: number;
     private description: string;
     private isDescriptionShown: boolean;
+    private additionalClassNames: string[];
 
     constructor(
         path: string, 
@@ -17,6 +18,7 @@ class CustomImageProps {
         this.width = width;
         this.height = height;
         this.isDescriptionShown = isDescriptionShown;
+        this.additionalClassNames = [];
     }
 
     createImage() {
@@ -27,6 +29,14 @@ class CustomImageProps {
             width={this.width}
             height={this.height} 
         />
+    }
+
+    addClassName(name: string) {
+        this.additionalClassNames.push(name);
+    }
+
+    getAdditionalClassNames(): string[] {
+        return this.additionalClassNames;
     }
 
     getDescriptionShown() : boolean {

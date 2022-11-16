@@ -1,4 +1,6 @@
 import CustomImagesCarouselProps from "../classes/CustomImagesCarouselProps";
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
 
 const CustomImagesCarouselComponent = (props: CustomImagesCarouselProps) => {
     const images = props.getImages();
@@ -11,6 +13,19 @@ const CustomImagesCarouselComponent = (props: CustomImagesCarouselProps) => {
         carousel.scrollLeft += direction * carousel.clientWidth;
     }
 
+    const [emblaRef] = useEmblaCarousel({ loop: false }, [Autoplay()]);
+    
+    return (
+        <div id = "custom-images-outer-carousel" className="embla" ref={emblaRef}>
+            <div id = "custom-images-inner-carousel" className="embla__container">
+                <div className="embla__slide">Slide 1</div>
+                <div className="embla__slide">Slide 2</div>
+                <div className="embla__slide">Slide 3</div>
+            </div>
+        </div>
+    )
+
+    /*
     return(
         <div id = "custom-images-outer-carousel">
             <button 
@@ -32,6 +47,7 @@ const CustomImagesCarouselComponent = (props: CustomImagesCarouselProps) => {
             </button>
         </div>
     );
+    */
 }
 
 export default CustomImagesCarouselComponent;
