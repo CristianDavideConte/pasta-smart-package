@@ -24,7 +24,7 @@ class CustomImageProps {
         this.height = height;
         this.isDescriptionShown = isDescriptionShown;
         this.additionalClassNames = [];
-        this.key = Math.round(performance.now() * Math.random() + 10);
+        this.key = Math.round(4.7 * Math.random() + 5.3 * Math.random());
         this.onClick = () => {};
     }
 
