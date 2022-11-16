@@ -1,3 +1,6 @@
+import { MouseEventHandler } from "react";
+
+/* eslint-disable @next/next/no-img-element */
 class CustomImageProps {
     private key: number;
     private path: string;
@@ -6,6 +9,7 @@ class CustomImageProps {
     private description: string;
     private isDescriptionShown: boolean;
     private additionalClassNames: string[]; 
+    private onClick: MouseEventHandler<HTMLDivElement>;
 
     constructor(
         path: string, 
@@ -21,6 +25,7 @@ class CustomImageProps {
         this.isDescriptionShown = isDescriptionShown;
         this.additionalClassNames = [];
         this.key = Math.round(performance.now() * Math.random() + 10);
+        this.onClick = () => {};
     }
 
     createImage() {
@@ -39,6 +44,14 @@ class CustomImageProps {
 
     setKey(key: number) {
         this.key = key;
+    }
+
+    getOnClick() : MouseEventHandler<HTMLDivElement> {
+        return this.onClick;
+    }
+    
+    setOnClick(onclick: MouseEventHandler<HTMLDivElement>) {
+        this.onClick = onclick;
     }
 
     addClassName(name: string) {

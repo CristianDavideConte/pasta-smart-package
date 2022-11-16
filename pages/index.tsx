@@ -1,12 +1,13 @@
 import Head from 'next/head'
-import CustomLabel from '../common/components/CustomLabelComponent'
 
-//import testImage from "../public/images/pasta.png"
 import CustomImageProps from '../common/classes/CustomImageProps'
-import CustomLabelProps from '../common/classes/CustomLabelProps'
 import Allergen from '../common/classes/Allergen'
 import CustomImagesCarouselProps from '../common/classes/CustomImagesCarouselProps'
 import CustomImagesCarouselComponent from '../common/components/CustomImagesCarouselComponent'
+import AllergensCollectionComponent from '../common/components/AllergensCollectionComponent'
+import AllergensCollectionProps from '../common/classes/AllergensCollectionProps'
+import Popup from '../common/classes/Popup'
+import { useState } from 'react'
 
 export default function Home() {
 
@@ -26,10 +27,8 @@ export default function Home() {
     )
   );
 
-  const customLabel = CustomLabel(
-    new CustomLabelProps(
-      "10-08-2022",
-      ["farina", "uova"],
+  const allergens = AllergensCollectionComponent(
+    new AllergensCollectionProps(
       [
         new Allergen(
           "eggs",
@@ -51,10 +50,13 @@ export default function Home() {
           "nuts",
           "../images/nuts.png"
         )
-      ]
+      ],
+      () => setShowModal(true)
     )
   );
 
+  const [showModal, setShowModal] = useState(false);
+  
   return (
     <>
       <Head key={1234}>
@@ -64,7 +66,13 @@ export default function Home() {
       </Head>
 
       {carousel}
-      {customLabel}
+      {allergens}
+      
+      <div id="popup-root">
+        <Popup show={showModal} onClose={() => setShowModal(false)} title={"Default Popup"}>
+          <p>Hello from the modal!</p>
+        </Popup>
+      </div>
     </>
   )
 }

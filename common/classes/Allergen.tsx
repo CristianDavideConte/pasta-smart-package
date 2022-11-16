@@ -1,3 +1,6 @@
+import CustomImage from "../components/CustomImageComponent";
+import CustomImageProps from "./CustomImageProps";
+
 class Allergen {
     private name: string;
     private iconPath: string;
@@ -5,6 +8,15 @@ class Allergen {
     constructor(name: string, iconPath: string) {
         this.name = name;
         this.iconPath = iconPath;
+    }
+
+    createImageProps() {
+        return new CustomImageProps(
+            this.iconPath,
+            this.name,
+            100,
+            100
+        );
     }
 
     getName() : string {
