@@ -6,9 +6,10 @@ const CustomImage = (props: CustomImageProps) => {
     classNames.push("custom-image-container");
 
     const className = classNames.join(" ");
+    const key = props.getKey();
 
     return(
-        <div className={className}>
+        <div className={className} key={key}>
             {image}        
         </div>
     );

@@ -14,9 +14,11 @@ class CustomImagesCarouselProps {
 
     getImages() {
         return this.imagesProps
-            .map(imageProps => {
+            .map((imageProps, index) => {
+                imageProps.setKey(index);
                 imageProps.hideDescription();
                 imageProps.addClassName("embla__slide");
+                
                 return CustomImage(
                     imageProps
                 );

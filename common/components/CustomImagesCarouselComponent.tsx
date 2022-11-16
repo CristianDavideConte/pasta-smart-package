@@ -5,7 +5,7 @@ import Autoplay from 'embla-carousel-autoplay'
 
 const CustomImagesCarouselComponent = (props: CustomImagesCarouselProps) => {
     const images = props.getImages();
-    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()]);
+    const [viewportRef, emblaApi] = useEmblaCarousel({ loop: true, skipSnaps: false}, [Autoplay()]);
     
     const scrollPrev = useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev()
@@ -25,16 +25,16 @@ const CustomImagesCarouselComponent = (props: CustomImagesCarouselProps) => {
 
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [scrollSnaps, setScrollSnaps] = useState([]);
-        
-    const onSelect = useCallback(() => {
-        if (!emblaApi) return;
-        setSelectedIndex(emblaApi.selectedScrollSnap());
-    }, [emblaApi, setSelectedIndex]);
-
+    
     const scrollTo = useCallback(
         (index: number) => emblaApi && emblaApi.scrollTo(index), 
         [emblaApi]
     );
+
+    const onSelect = useCallback(() => {
+        if (!emblaApi) return;
+        setSelectedIndex(emblaApi.selectedScrollSnap());
+    }, [emblaApi, setSelectedIndex]);
 
     useEffect(() => {
         if (!emblaApi) return;
@@ -46,7 +46,7 @@ const CustomImagesCarouselComponent = (props: CustomImagesCarouselProps) => {
     return (
         <>
             <div id = "custom-images-outer-carousel" className="embla">
-                <div className="embla__viewport" ref={emblaRef}>
+                <div className="embla__viewport" ref={viewportRef}>
                     <div id = "custom-images-inner-carousel" className="embla__container">
                         {images}
                     </div>
