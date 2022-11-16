@@ -10,7 +10,7 @@ import CustomImagesCarouselComponent from '../common/components/CustomImagesCaro
 
 export default function Home() {
 
-  const testProps = new Array(20);
+  const testProps = new Array(4);
   testProps.fill(
     new CustomImageProps(
       "/images/pasta.png", 

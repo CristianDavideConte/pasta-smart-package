@@ -14,10 +14,12 @@ const nextConfig = {
   //assetPrefix: "/pasta-smart-package", //Uncomment when pushing to github
 }
 
+/*
 module.exports = withPlugins([
   [optimizedImages, {
-    /* config for next-optimized-images */
     handleImages: ['jpeg', 'png', 'svg', 'webp', 'gif'],
   }],
   nextConfig
 ]);
+*/
+module.exports = nextConfig;
