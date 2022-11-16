@@ -3,6 +3,10 @@
   --carousel-button-size: 6vh;
   --carousel-button-margin: 20%;
   --carousel-button-border-radius: 10px;
+  --carousel-button-arrow-color: #1bcacd;
+  --carousel-button-color: rgba(200,200,200, 0.5);
+  --carousel-dot-color-selected: var(--carousel-button-arrow-color);
+  --carousel-dot-color-unselected: var(--carousel-button-color);
 }
 
 html,
@@ -47,9 +51,20 @@ button {
 }
 
 .embla__viewport {
+  cursor: grab;
   width: 100vw;
   transform: translateX(-20%);
 }
+
+.embla__viewport.is-draggable {
+  cursor: move;
+  cursor: grab;
+}
+
+.embla__viewport.is-dragging {
+  cursor: grabbing;
+}
+
 
 .embla__slide {
   flex: 0 0 100%;
@@ -67,6 +82,9 @@ button {
   margin-left: var(--carousel-button-margin);
   margin-top: auto;
   margin-bottom: auto;
+  fill: var(--carousel-button-arrow-color);
+  background: var(--carousel-button-color);
+  backdrop-filter: saturate(200%) blur(12px);
 }
 
 .embla__next {  
@@ -81,6 +99,49 @@ button {
   margin-left: calc(100% - var(--carousel-button-size) - var(--carousel-button-margin));
   margin-top: auto;
   margin-bottom: auto;
+  fill: var(--carousel-button-arrow-color);
+  background: var(--carousel-button-color);
+  backdrop-filter: saturate(200%) blur(12px);
+}
+
+.embla__button__svg {
+  height: calc(0.5 * var(--carousel-button-size));
+  width: calc(0.5 * var(--carousel-button-size));
+}
+
+.embla__dots {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.embla__dot {
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  width: 30px;
+  height: 30px;
+  margin-right: 7.5px;
+  margin-left: 7.5px;
+  display: flex;
+  align-items: center;
+}
+
+.embla__dot:after {
+  background-color: var(--carousel-dot-color-unselected);
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  content: "";
+}
+
+.embla__dot.is-selected:after {
+  background-color: var(--carousel-dot-color-selected);
+  opacity: 1;
 }
 
 #custom-images-outer-carousel {
@@ -93,4 +154,8 @@ button {
 #custom-images-inner-carousel {
   width: 100%;
   height: 100%;
+}
+
+#custom-images-carousel-button-arrow-left {
+  margin-right: 10%;
 }
