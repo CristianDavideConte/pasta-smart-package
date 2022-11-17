@@ -3,9 +3,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  /**/
   images: {
     loader: "akamai",
-    path: "/",
+    path: "",
   },
   basePath: "/pasta-smart-package", //Uncomment when pushing to github 
   assetPrefix: "/pasta-smart-package", //Uncomment when pushing to github
