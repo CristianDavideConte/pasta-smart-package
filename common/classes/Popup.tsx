@@ -1,32 +1,24 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
-const Popup = ({ show, onClose, children, title }) => {
+const Popup = ({ show, onClose}) => {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
     setIsBrowser(true);
   }, []);
 
-  const handleCloseClick = (e) => {
+  const handleCloseClick = (e: any) => {
     e.preventDefault();
     onClose();
   };
 
   const modalContent = show ? (
-    <div className="popup-overlay">
-      <div className="popup">
+    <div className="popup-overlay" onClick={handleCloseClick}>
+      <div className="popup" onClick={(e)=> {e.stopPropagation()}}>
         <div className="popup-header">
-          <a href="#" onClick={handleCloseClick}>
-            x
-          </a>
         </div>
-        {title && <div className="popup-title">{title}</div>}
-        <div className="popup-body">
-            {
-                children
-            }
-        </div>
+        <div className="popup-body"></div>
       </div>
     </div>
   ) : null;

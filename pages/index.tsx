@@ -1,13 +1,12 @@
 import Head from 'next/head'
 
 import CustomImageProps from '../common/classes/CustomImageProps'
-import Allergen from '../common/classes/Allergen'
 import CustomImagesCarouselProps from '../common/classes/CustomImagesCarouselProps'
 import CustomImagesCarouselComponent from '../common/components/CustomImagesCarouselComponent'
-import AllergensCollectionComponent from '../common/components/AllergensCollectionComponent'
-import AllergensCollectionProps from '../common/classes/AllergensCollectionProps'
 import Popup from '../common/classes/Popup'
 import { useState } from 'react'
+import LanguageSelector from '../common/languages/LanguageSelector'
+import { useRouter } from 'next/router'
 
 export default function Home() {
 
@@ -27,36 +26,20 @@ export default function Home() {
     )
   );
 
-  const allergens = AllergensCollectionComponent(
-    new AllergensCollectionProps(
-      [
-        new Allergen(
-          "eggs",
-          "../images/eggs.png"
-        ),
-        new Allergen(
-          "fish",
-          "../images/fish.png"
-        ),
-        new Allergen(
-          "shellfish",
-          "../images/shellfish.png"
-        ),
-        new Allergen(
-          "gluten",
-          "../images/gluten.png"
-        ),
-        new Allergen(
-          "nuts",
-          "../images/nuts.png"
-        )
-      ],
-      () => setShowModal(true)
-    )
-  );
-
   const [showModal, setShowModal] = useState(false);
   
+  const router = useRouter();
+  const languageURLIdentifier = "lan";
+  const languageURLString = typeof router.query[languageURLIdentifier] === "string" ? router.query[languageURLIdentifier] :
+                            router.query[languageURLIdentifier]?.length ? router.query[languageURLIdentifier][0] : 
+                            "ita"; 
+  const language = new LanguageSelector(languageURLString).getLanguage();
+  const translatedLabel = language.getTranslatedLabel();
+  const translatedAllergens = language.getTranslatedAllergens(setShowModal);
+  
+  
+  //TODO: insert a fixed header to show the pasta logo
+
   return (
     <>
       <Head key={1234}>
@@ -66,12 +49,11 @@ export default function Home() {
       </Head>
 
       {carousel}
-      {allergens}
-      
+      {translatedLabel}
+      {translatedAllergens}
+
       <div id="popup-root">
-        <Popup show={showModal} onClose={() => setShowModal(false)} title={"Default Popup"}>
-          <p>Hello from the modal!</p>
-        </Popup>
+        <Popup show={showModal} onClose={() => setShowModal(false)}/>
       </div>
     </>
   )

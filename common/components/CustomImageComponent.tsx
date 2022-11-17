@@ -7,10 +7,9 @@ const CustomImage = (props: CustomImageProps) => {
 
     const className = classNames.join(" ");
     const key = props.getKey();
-    const onClick = props.getOnClick();
 
     return(
-        <div className={className} key={key} onClick={onClick}>
+        <div className={className} key={key}>
             {image}        
         </div>
     );

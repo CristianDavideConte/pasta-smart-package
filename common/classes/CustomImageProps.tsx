@@ -35,6 +35,7 @@ class CustomImageProps {
             alt={this.description}
             width={this.width}
             height={this.height} 
+            onClick={this.onClick}
         />
     }
 

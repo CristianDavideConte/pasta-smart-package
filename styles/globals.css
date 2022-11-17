@@ -1,3 +1,50 @@
+:root{
+  --carousel-slide-width: 75%;
+  --carousel-button-size: 6vh;
+  --carousel-button-margin: 5vw;
+  --carousel-button-border-radius: 10px;
+  --carousel-button-arrow-color: white;
+  --carousel-button-color: rgba(200,200,200, 0.5);
+  --carousel-dot-color-selected: var(--carousel-button-arrow-color);
+  --carousel-dot-color-unselected: var(--carousel-button-color);
+
+  --color-barilla-blue: rgba(57, 116, 208, 255);
+  --color-barilla-blue-dark: rgba(47, 106, 198, 1);
+  --color-barilla-black-transparent: rgba(0, 0, 20, 0.7);
+  --color-barilla-yellow: rgba(222, 196, 137, 1);
+  --color-barilla-yellow-dark: rgba(192, 166, 107, 1);
+  --color-barilla-red: rgba(186, 0, 14, 1);
+  --color-barilla-white: rgba(240, 239, 237, 1);
+
+  --card-color: var(--color-barilla-blue);
+  --card-color-pressed: var(--color-barilla-blue-dark);
+  --card-border-radius: 1rem;
+
+  --text-shadow: 3px 3px 5px rgba(0, 59, 151, 1), -3px -3px 5px rgba(107, 166, 255, 1);
+
+  --card-shadows-inset: inset 0.6rem 0.6rem 0.5rem 0 rgba(0, 59, 151, 0.23),
+                        inset -0.6rem -0.6rem 0.5rem 0 rgba(77, 136, 228, 1);
+                        
+  --card-shadows: -0.3rem -0.3rem 0.4rem 0 rgba(0, 59, 151, 0.3),
+                  0.3rem 0.3rem 0.4rem 0 rgba(77, 136, 228, 0.8);
+
+  --card-shadows-all-buttons:  inset -0.2rem -0.2rem 0.5rem 0 rgba(0, 59, 151, 0.3),
+                               inset 0.2rem 0.2rem 0.5rem 0 rgba(77, 136, 228, 1),
+                               -0.3rem -0.3rem 0.4rem 0 rgba(0, 59, 151, 0.3),
+                               0.3rem 0.3rem 0.4rem 0 rgba(77, 136, 228, 0.8);             
+                             
+  --card-shadows-all-buttons-active:  inset 0.2rem 0.2rem 0.5rem 0 rgba(0, 59, 151, 0.3),
+                                      inset -0.2rem -0.2rem 0.5rem 0 rgba(77, 136, 228, 1),
+                                      0.3rem 0.3rem 0.4rem 0 rgba(0, 59, 151, 0.23),
+                                      0.3rem 0.3rem 0.4rem 0 rgba(77, 136, 228, 0.8);      
+                                    
+                                    
+  --card-shadows-all:  inset -0.4rem -0.4rem 0.5rem 0 rgba(77, 136, 228, 0.8),
+                       inset 0.4rem 0.4rem 0.5rem 0 rgba(0, 59, 151, 0.3),
+                       -0.4rem -0.4rem 0.5rem 0 rgba(77, 136, 228, 0.8),
+                       0.4rem 0.4rem 0.5rem 0 rgba(0, 59, 151, 0.3); 
+}
+
 *::-webkit-scrollbar {
   display: none;
 }
@@ -6,45 +53,98 @@
 * {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
-}
-
-:root{
-  --carousel-slide-width: 75%;
-  --carousel-button-size: 6vh;
-  --carousel-button-margin: 20%;
-  --carousel-button-border-radius: 10px;
-  --carousel-button-arrow-color: #1bcacd;
-  --carousel-button-color: rgba(200,200,200, 0.5);
-  --carousel-dot-color-selected: var(--carousel-button-arrow-color);
-  --carousel-dot-color-unselected: var(--carousel-button-color);
-
-  --card-color: rgba(230, 230, 230);
-  --card-border-radius: 1rem;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-select: none;
+  color: var(--color-barilla-white);
 }
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: var(--color-barilla-blue);
+  font-family: "Nunito Sans",sans-serif;
 }
 
 body > #__next {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   overflow-x: hidden;
+  padding-top: 5vh;
 }
 
 button {
   cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
   border: none;
   user-select: none;
   outline: none;
+}
+
+#popup-root {
+  z-index: 99;
+}
+
+.popup {
+  cursor: auto;
+  background: white;
+  width: 70vmin;
+  height: 40vh;
+  border-radius: 15px;
+  padding: 15px;
+  background-color: var(--color-barilla-blue);
+  box-shadow: var(--card-shadows-inset);
+}
+
+.popup-header {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 25px;
+}
+
+.popup-body {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-rows: 70% 30%;
+  grid-template-columns: 100%;
+}
+
+.popup-body > .custom-image {
+  margin: auto;
+  transform: scale(2);
+  border-radius: 50%;
+  box-shadow: var(--card-shadows);
+}
+
+.popup-secondary-content {
+  text-align: center;
+  font-size: 300%;
+}
+
+.popup-secondary-content > p {
+  text-shadow: var(--text-shadow);
+  line-break: anywhere;
+}
+
+.popup-overlay {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-barilla-black-transparent);
+  backdrop-filter: saturate(200%) blur(30px);
 }
 
 .custom-image-container {
@@ -65,8 +165,11 @@ button {
 
 .embla__viewport {
   cursor: grab;
-  width: 100vw;
-  transform: translateX(-20%);
+  max-width: 70vw;
+  overflow: hidden;
+  background-color: var(--card-color);
+  box-shadow: var(--card-shadows-inset);
+  border-radius: var(--card-border-radius);
 }
 
 .embla__viewport.is-draggable {
@@ -78,13 +181,11 @@ button {
   cursor: grabbing;
 }
 
-
 .embla__slide {
   flex: 0 0 100%;
 }
 
 .embla__prev {  
-  z-index: 99;
   border-radius: var(--carousel-button-border-radius);
   grid-row-start: 1;
   grid-row-end: 1;
@@ -96,12 +197,13 @@ button {
   margin-top: auto;
   margin-bottom: auto;
   fill: var(--carousel-button-arrow-color);
-  background: var(--carousel-button-color);
-  backdrop-filter: saturate(200%) blur(12px);
+  background: var(--card-color);
+  box-shadow: var(--card-shadows-all-buttons);
 }
 
 .embla__next {  
-  z-index: 99;
+  background: var(--card-color);
+  box-shadow: var(--card-shadows-all-buttons);
   border-radius: var(--carousel-button-border-radius);
   grid-row-start: 1;
   grid-row-end: 1;
@@ -113,11 +215,23 @@ button {
   margin-top: auto;
   margin-bottom: auto;
   fill: var(--carousel-button-arrow-color);
-  background: var(--carousel-button-color);
-  backdrop-filter: saturate(200%) blur(12px);
+  transition: all 0.2s;
+}
+
+.embla__prev:active,
+.embla__next:active {
+  background: var(--card-color-pressed);
+  box-shadow: var(--card-shadows-all-buttons-active);
+}
+
+
+.embla__prev:active > *,
+.embla__next:active > * {
+  transform: scale(0.8);
 }
 
 .embla__button__svg {
+  transition: all 0.19s;
   height: calc(0.5 * var(--carousel-button-size));
   width: calc(0.5 * var(--carousel-button-size));
 }
@@ -174,14 +288,16 @@ button {
 }
 
 #allergens-icons-container {
+  background-color: var(--card-color);
+  box-shadow: var(--card-shadows-all);
+  border-radius: var(--card-border-radius);
   overflow: scroll hidden;
   display: flex;
-  max-width: 70%;
+  justify-content: space-around;
+  max-width: 80vw;
   height: 15%;
-  background-color: var(--card-color);
-  border-radius: var(--card-border-radius);
   padding-left: 1rem;
-  padding-right: 1rem;
+  margin: auto;
 }
 
 .allergen-icon {
@@ -191,40 +307,87 @@ button {
   flex: none;  
   margin-left: 1rem;
   margin-right: 1rem;
+  flex-shrink: none;
 }
 
 .allergen-icon > .custom-image {
   height: 5rem;
   width: 5rem;
+  cursor: pointer;
 }
 
-.popup-header {
-  display: flex;
-  justify-content: flex-end;
-  font-size: 25px;
+.custom-label-container {
+  max-width: 90%;
+  font-size: 2.7vmin;
+  margin: auto;
 }
 
-.popup-body {
-  padding-top: 10px;
-}
-
-.popup {
-  background: white;
-  width: 500px;
-  height: 600px;
-  border-radius: 15px;
-  padding: 15px;
-}
-
-.popup-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
+.custom-label-title-container, 
+.custom-label-ingredients-container,
+.custom-label-nutritional-values-container {
+  background-color: var(--card-color);
+  box-shadow: var(--card-shadows-all);
+  border-radius: var(--card-border-radius);
+  min-height: 6vh;
+  margin: 2vh 0;
+  display: grid;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
 }
 
+.custom-label-values-strong {
+  font-weight: bold;
+}
+
+.custom-label-title-container {
+  padding: 3vh 0;
+  grid-template-columns: 60%;
+}
+
+.custom-label-title-product-name {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-size: 6vmin;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  text-shadow: var(--text-shadow);
+}
+
+.custom-label-title-product-main-info {
+  margin-top: 2vmin;  
+  display: flex;
+  justify-content: space-around;
+}
+
+.custom-label-title-product-main-info > * {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  padding: 2vmin 0;
+  background-color: var(--card-color);
+  box-shadow: var(--card-shadows);
+  border-radius: 2vmin;
+  text-shadow: var(--text-shadow);
+}
+
+.custom-label-ingredients-container {
+  display: flex;
+  font-size: 4vmin;
+  padding: 3vmin;
+  text-shadow: var(--text-shadow);
+}
+
+.custom-label-ingredients-title {
+  padding-right: 0.2rem;
+}
+
+.custom-label-nutritional-values-container {
+  padding: 7vmin;
+}
+
+table {
+  border-spacing: 0.4rem 3vmin;
+  text-shadow: var(--text-shadow);
+}
