@@ -8,6 +8,14 @@ import ILanguage from "./ILanguage";
 class Arabic implements ILanguage {
     constructor() {}
     
+    getFlagIconName = () => {
+        return "arb.png";
+    }
+
+    getTranslatedSelectLanguageString = () => {
+        return "اختر لغة";
+    }
+
     getTranslatedLabel = () => CustomLabelComponent(
         new CustomLabelProps(
             "فوسيلي N.98",

@@ -13,7 +13,7 @@ const Popup = ({ show, onClose}) => {
     onClose();
   };
 
-  const modalContent = show ? (
+  const popupContent = show ? (
     <div className="popup-overlay" onClick={handleCloseClick}>
       <div className="popup" onClick={(e)=> {e.stopPropagation()}}>
         <div className="popup-header">
@@ -29,7 +29,7 @@ const Popup = ({ show, onClose}) => {
     if(!popupRoot) return <></>;
 
     return ReactDOM.createPortal(
-      modalContent,
+      popupContent,
       popupRoot
     );
   } else {

@@ -5,9 +5,17 @@ import AllergensCollectionComponent from "../components/AllergensCollectionCompo
 import CustomLabelComponent from "../components/CustomLabelComponent";
 import ILanguage from "./ILanguage";
 
-class English implements ILanguage {
+class French implements ILanguage {
     constructor() {}
-    
+        
+    getFlagIconName = () => {
+        return "fr.png";
+    }
+
+    getTranslatedSelectLanguageString = () => {
+        return "Sélectionnez une langue";
+    }
+
     getTranslatedLabel = () => CustomLabelComponent(
         new CustomLabelProps(
             "Fusilli N.98",
@@ -78,4 +86,4 @@ class English implements ILanguage {
     );
 }
 
-export default English;
+export default French;

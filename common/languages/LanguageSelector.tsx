@@ -52,6 +52,18 @@ class LanguageSelector {
     getLanguage() : ILanguage {
         return this.language;
     }
+
+    getAllLanguages() : ILanguage[] {
+        return [
+            new Italian(),
+            new English(),
+            new French(),
+            new German(),
+            new Spanish(),
+            new Japanese(),
+            new Arabic(),
+        ];
+    }
 }
 
 export default LanguageSelector;

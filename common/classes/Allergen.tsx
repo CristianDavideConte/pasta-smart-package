@@ -1,4 +1,3 @@
-import CustomImage from "../components/CustomImageComponent";
 import CustomImageProps from "./CustomImageProps";
 
 class Allergen {

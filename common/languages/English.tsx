@@ -8,6 +8,14 @@ import ILanguage from "./ILanguage";
 class English implements ILanguage {
     constructor() {}
     
+    getFlagIconName = () => {
+        return "eng.png";
+    }
+
+    getTranslatedSelectLanguageString = () => {
+        return "Select a language";
+    }
+
     getTranslatedLabel = () => CustomLabelComponent(
         new CustomLabelProps(
             "Fusilli N.98",

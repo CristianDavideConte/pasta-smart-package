@@ -1,4 +1,18 @@
 :root{
+  --number-of-allergens: 5;
+
+  --color-barilla-blue-light: rgba(67, 126, 218, 1);
+  --color-barilla-blue: rgba(57, 116, 208, 1);
+  --color-barilla-blue-transparent: rgba(57, 116, 208, 0.5);
+  --color-barilla-blue-dark: rgba(47, 106, 198, 1);
+  --color-barilla-blue-darkest: rgba(37, 96, 188, 1);
+  --color-barilla-black-transparent: rgba(0, 0, 20, 0.7);
+  --color-barilla-yellow: rgba(222, 196, 137, 1);
+  --color-barilla-yellow-dark: rgba(192, 166, 107, 1);
+  --color-barilla-red: rgba(186, 0, 14, 1);
+  --color-barilla-white: rgba(240, 239, 237, 1);
+
+  --navbar-size: 9vh;
   --carousel-slide-width: 75%;
   --carousel-button-size: 6vh;
   --carousel-button-margin: 5vw;
@@ -7,14 +21,6 @@
   --carousel-button-color: rgba(200,200,200, 0.5);
   --carousel-dot-color-selected: var(--carousel-button-arrow-color);
   --carousel-dot-color-unselected: var(--carousel-button-color);
-
-  --color-barilla-blue: rgba(57, 116, 208, 255);
-  --color-barilla-blue-dark: rgba(47, 106, 198, 1);
-  --color-barilla-black-transparent: rgba(0, 0, 20, 0.7);
-  --color-barilla-yellow: rgba(222, 196, 137, 1);
-  --color-barilla-yellow-dark: rgba(192, 166, 107, 1);
-  --color-barilla-red: rgba(186, 0, 14, 1);
-  --color-barilla-white: rgba(240, 239, 237, 1);
 
   --card-color: var(--color-barilla-blue);
   --card-color-pressed: var(--color-barilla-blue-dark);
@@ -25,8 +31,15 @@
   --card-shadows-inset: inset 0.6rem 0.6rem 0.5rem 0 rgba(0, 59, 151, 0.23),
                         inset -0.6rem -0.6rem 0.5rem 0 rgba(77, 136, 228, 1);
                         
-  --card-shadows: -0.3rem -0.3rem 0.4rem 0 rgba(0, 59, 151, 0.3),
-                  0.3rem 0.3rem 0.4rem 0 rgba(77, 136, 228, 0.8);
+                        
+  --card-shadows-inset-inverted: inset -0.6rem -0.6rem 0.5rem 0 rgba(0, 29, 121, 0.3),
+                                 inset 0.6rem 0.6rem 0.5rem 0 rgba(97, 156, 248, 1);
+
+  --card-shadows: -0.3rem -0.3rem 0.4rem 0 rgba(0, 59, 151, 0.4),
+                  0.3rem 0.3rem 0.4rem 0 rgba(77, 136, 228, 0.9);
+
+  --card-shadows-inverted: 0.3rem -0.3rem 0.4rem 0 rgba(0, 59, 151, 0.3),
+                           -0.3rem 0.3rem 0.4rem 0 rgba(77, 136, 228, 0.8);
 
   --card-shadows-all-buttons:  inset -0.2rem -0.2rem 0.5rem 0 rgba(0, 59, 151, 0.3),
                                inset 0.2rem 0.2rem 0.5rem 0 rgba(77, 136, 228, 1),
@@ -74,7 +87,7 @@ body > #__next {
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
-  padding-top: 5vh;
+  padding: calc(2 * var(--navbar-size)) 0;
 }
 
 button {
@@ -96,7 +109,7 @@ button {
   border-radius: 15px;
   padding: 15px;
   background-color: var(--color-barilla-blue);
-  box-shadow: var(--card-shadows-inset);
+  box-shadow: var(--card-shadows-inset-inverted);
 }
 
 .popup-header {
@@ -116,10 +129,11 @@ button {
 }
 
 .popup-body > .custom-image {
-  margin: auto;
-  transform: scale(2);
-  border-radius: 50%;
   box-shadow: var(--card-shadows);
+  margin: auto;
+  border-radius: 50%;
+  height: 70%;
+  width: auto;
 }
 
 .popup-secondary-content {
@@ -133,18 +147,42 @@ button {
 }
 
 .popup-overlay {
+  z-index: 3;
   cursor: pointer;
-  position: absolute;
+  position: fixed;
+  overflow: hidden;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  padding-top: 5vh;
-  display: flex;
+  right: 0;
+  bottom: 0;
+  display: grid;
   justify-content: center;
   align-items: center;
   background-color: var(--color-barilla-black-transparent);
   backdrop-filter: saturate(200%) blur(30px);
+}
+
+#navbar {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-size);
+  background-color: var(--color-barilla-blue-transparent);
+  backdrop-filter: blur(7px);
+}
+
+.navbar-button {
+  height: var(--navbar-size);
+}
+
+.navbar-button > .custom-image{
+  cursor: pointer;
+  height: var(--navbar-size);
+  width: var(--navbar-size);
+  border-radius: 50%;
+  box-shadow: var(--card-shadows);
 }
 
 .custom-image-container {
@@ -220,7 +258,7 @@ button {
 
 .embla__prev:active,
 .embla__next:active {
-  background: var(--card-color-pressed);
+  background: var(--color-barilla-blue-darkest);
   box-shadow: var(--card-shadows-all-buttons-active);
 }
 
@@ -231,7 +269,7 @@ button {
 }
 
 .embla__button__svg {
-  transition: all 0.19s;
+  transition: all 0.2s;
   height: calc(0.5 * var(--carousel-button-size));
   width: calc(0.5 * var(--carousel-button-size));
 }
@@ -250,8 +288,8 @@ button {
   padding: 0;
   outline: 0;
   border: 0;
-  width: 30px;
-  height: 30px;
+  width: 2rem;
+  height: 2rem;
   margin-right: 7.5px;
   margin-left: 7.5px;
   display: flex;
@@ -259,15 +297,22 @@ button {
 }
 
 .embla__dot:after {
-  background-color: var(--carousel-dot-color-unselected);
+  box-shadow: inset 0.1rem 0.1rem 0.2rem 0 rgba(97, 156, 248, 1),
+              inset -0.1rem -0.1rem 0.2rem 0 rgba(0, 19, 111, 0.3);
+  /*background-color: var(--carousel-dot-color-unselected);*/
+  background-color: var(--color-barilla-blue-light);
   width: 100%;
-  height: 4px;
-  border-radius: 2px;
+  height: 50%;
+  border-radius: 2rem;
   content: "";
+  transition: all 0.2s;
 }
 
 .embla__dot.is-selected:after {
-  background-color: var(--carousel-dot-color-selected);
+  box-shadow: inset 0.1rem 0.1rem 0.2rem 0 rgba(0, 29, 121, 0.3),
+              inset -0.1rem -0.1rem 0.2rem 0 rgba(97, 156, 248, 1);
+  /*background-color: var(--carousel-dot-color);*/
+  background-color: var(--color-barilla-blue-darkest);
   opacity: 1;
 }
 
@@ -285,35 +330,6 @@ button {
 
 #custom-images-carousel-button-arrow-left {
   margin-right: 10%;
-}
-
-#allergens-icons-container {
-  background-color: var(--card-color);
-  box-shadow: var(--card-shadows-all);
-  border-radius: var(--card-border-radius);
-  overflow: scroll hidden;
-  display: flex;
-  justify-content: space-around;
-  max-width: 80vw;
-  height: 15%;
-  padding-left: 1rem;
-  margin: auto;
-}
-
-.allergen-icon {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  flex: none;  
-  margin-left: 1rem;
-  margin-right: 1rem;
-  flex-shrink: none;
-}
-
-.allergen-icon > .custom-image {
-  height: 5rem;
-  width: 5rem;
-  cursor: pointer;
 }
 
 .custom-label-container {
@@ -366,8 +382,8 @@ button {
   align-items: center;
   width: 40%;
   padding: 2vmin 0;
-  background-color: var(--card-color);
-  box-shadow: var(--card-shadows);
+  background-color: transparent;
+  box-shadow: var(--card-shadows-all);
   border-radius: 2vmin;
   text-shadow: var(--text-shadow);
 }
@@ -390,4 +406,33 @@ button {
 table {
   border-spacing: 0.4rem 3vmin;
   text-shadow: var(--text-shadow);
+}
+
+#allergens-icons-container {
+  background-color: var(--card-color);
+  box-shadow: var(--card-shadows-all);
+  border-radius: var(--card-border-radius);
+  overflow: scroll hidden;
+  display: grid;
+  grid-template-columns: repeat(var(--number-of-allergens), 1fr);
+  max-width: 80vw;
+  height: 15%;
+  padding-left: 1rem;
+  margin: auto;
+}
+
+.allergen-icon {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.allergen-icon > .custom-image {
+  box-shadow: var(--card-shadows);
+  border-radius: 50%;
+  height: 5rem;
+  width: 5rem;
+  cursor: pointer;
 }

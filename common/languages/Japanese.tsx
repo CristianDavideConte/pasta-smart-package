@@ -8,6 +8,14 @@ import ILanguage from "./ILanguage";
 class Japanese implements ILanguage {
     constructor() {}
     
+    getFlagIconName = () => {
+        return "jp.png";
+    }
+
+    getTranslatedSelectLanguageString = () => {
+        return "言語を選択";
+    }
+
     getTranslatedLabel = () => CustomLabelComponent(
         new CustomLabelProps(
             "フジッリ N.98",
