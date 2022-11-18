@@ -5,7 +5,7 @@ import Autoplay from 'embla-carousel-autoplay'
 
 const CustomImagesCarouselComponent = (props: CustomImagesCarouselProps) => {
     const images = props.getImages();
-    const [viewportRef, emblaApi] = useEmblaCarousel({ loop: true, skipSnaps: false}, [Autoplay()]);
+    const [viewportRef, emblaApi] = useEmblaCarousel({ loop: true, skipSnaps: false}, [/*Autoplay()*/]);
     
     const scrollPrev = useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev()

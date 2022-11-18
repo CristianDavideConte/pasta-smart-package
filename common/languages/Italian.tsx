@@ -8,14 +8,22 @@ import ILanguage from "./ILanguage";
 class Italian implements ILanguage {
     constructor() {}
     
-    getFlagIconName = () => {
-        return "ita.png";
+    getLanguageId() : string {
+        return "ita";
     }
 
+    getFlagIconName = () => {
+        return this.getLanguageId() + ".png";
+    }
+    
     getTranslatedSelectLanguageString = () => {
         return "Seleziona una lingua";
     }
 
+    getTranslatedStartTimerString = () => {
+        return "Avvia";
+    }
+    
     getTranslatedLabel = () => CustomLabelComponent(
         new CustomLabelProps(
             "Fusilli N.98",

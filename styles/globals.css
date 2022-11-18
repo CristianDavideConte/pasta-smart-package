@@ -1,11 +1,22 @@
+@keyframes popup-slide-animation {
+  from {
+    transform: translate3d(calc(50vw - 50%), 100vh, 0);
+  }
+  to {
+    transform: translate3d(calc(50vw - 50%), calc(50vh - 50%), 0);
+  }
+}
+
 :root{
   --number-of-allergens: 5;
+  --number-of-languages: 7;
 
   --color-barilla-blue-light: rgba(67, 126, 218, 1);
   --color-barilla-blue: rgba(57, 116, 208, 1);
   --color-barilla-blue-transparent: rgba(57, 116, 208, 0.5);
   --color-barilla-blue-dark: rgba(47, 106, 198, 1);
   --color-barilla-blue-darkest: rgba(37, 96, 188, 1);
+  --color-barilla-blue-black: rgba(17, 76, 168, 1);
   --color-barilla-black-transparent: rgba(0, 0, 20, 0.7);
   --color-barilla-yellow: rgba(222, 196, 137, 1);
   --color-barilla-yellow-dark: rgba(192, 166, 107, 1);
@@ -101,15 +112,38 @@ button {
   z-index: 99;
 }
 
+.popup-overlay {
+  z-index: 3;
+  cursor: pointer;
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  height: calc(100vh + 2 * var(--navbar-size));
+  width: 100vw;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-barilla-black-transparent);
+  backdrop-filter: saturate(200%) blur(7px);
+}
+
 .popup {
+  z-index: 3;
   cursor: auto;
+  position: fixed;
   background: white;
+  top: 0;
+  left: 0;
   width: 70vmin;
   height: 40vh;
   border-radius: 15px;
   padding: 15px;
   background-color: var(--color-barilla-blue);
   box-shadow: var(--card-shadows-inset-inverted);
+  transform: translate3d(calc(50vw - 50%), calc(50vh - 50%), 0);
+  animation-name: popup-slide-animation;
+  animation-duration: 0.35s;
 }
 
 .popup-header {
@@ -136,6 +170,31 @@ button {
   width: auto;
 }
 
+.popup-flags-carousel {  
+  background-color: var(--card-color);
+  box-shadow: var(--card-shadows-inset);
+  border-radius: var(--card-border-radius);
+  overflow: scroll hidden;
+  display: grid;
+  grid-template-columns: repeat(var(--number-of-languages), 1fr);
+  max-width: 80%;
+  height: 70%;
+  padding-left: 3rem;
+  margin: auto;
+  scroll-behavior: smooth;
+}
+
+.popup-flags-carousel > .custom-image-container {
+  height: 100%;
+  margin-right: 3rem;
+}
+
+.popup-flags-carousel > .custom-image-container > .custom-image {
+  cursor: pointer;
+  box-shadow: var(--card-shadows-all-buttons);
+  border-radius: 50%;
+}
+
 .popup-secondary-content {
   text-align: center;
   font-size: 300%;
@@ -146,31 +205,21 @@ button {
   line-break: anywhere;
 }
 
-.popup-overlay {
-  z-index: 3;
-  cursor: pointer;
-  position: fixed;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--color-barilla-black-transparent);
-  backdrop-filter: saturate(200%) blur(30px);
+.popup-language-text > p {
+  font-size: 6.3vmin;
 }
 
 #navbar {
   z-index: 2;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0rem;
+  left: 0%;
+  right: 0%;
   height: var(--navbar-size);
-  background-color: var(--color-barilla-blue-transparent);
-  backdrop-filter: blur(7px);
+  background-color: var(--color-barilla-blue);
+  box-shadow: 0 0 1.2rem var(--color-barilla-blue-black);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .navbar-button {
@@ -179,8 +228,8 @@ button {
 
 .navbar-button > .custom-image{
   cursor: pointer;
-  height: var(--navbar-size);
-  width: var(--navbar-size);
+  height: calc(0.6 * var(--navbar-size));
+  width: calc(0.6 * var(--navbar-size));
   border-radius: 50%;
   box-shadow: var(--card-shadows);
 }
@@ -419,6 +468,7 @@ table {
   height: 15%;
   padding-left: 1rem;
   margin: auto;
+  scroll-behavior: smooth;
 }
 
 .allergen-icon {

@@ -8,12 +8,20 @@ import ILanguage from "./ILanguage";
 class French implements ILanguage {
     constructor() {}
         
-    getFlagIconName = () => {
-        return "fr.png";
+    getLanguageId() : string {
+        return "fr";
     }
 
+    getFlagIconName = () => {
+        return this.getLanguageId() + ".png";
+    }
+    
     getTranslatedSelectLanguageString = () => {
         return "Sélectionnez une langue";
+    }
+
+    getTranslatedStartTimerString = () => {
+        return "Commencer";
     }
 
     getTranslatedLabel = () => CustomLabelComponent(

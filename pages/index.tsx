@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import Head from 'next/head'
 
 import CustomImageProps from '../common/classes/CustomImageProps'
@@ -10,7 +11,6 @@ import { useRouter } from 'next/router'
 import NavbarButton from '../common/classes/NavbarButton'
 import CustomNavbarComponentProps from '../common/classes/CustomNavbarComponentProps'
 import CustomNavbarComponent from '../common/components/CustomNavbarComponent'
-import CustomImage from '../common/components/CustomImageComponent'
 
 export default function Home() {
 
@@ -56,50 +56,95 @@ export default function Home() {
       setShowModal(true);
 
       window.requestAnimationFrame(() => {
-          const popupBody = document.getElementsByClassName("popup-body")[0]; 
-          const languageItem = event.nativeEvent.target as HTMLImageElement;
-          const languageSelectorCarousel = 
-          <div>
-            {
-              languageSelector.getAllLanguages().map(
-                _language => {
-                  return(
-                    CustomImage(
-                      new CustomImageProps(
-                        "/images/flags/" + _language.getFlagIconName(),
-                        _language.getTranslatedSelectLanguageString(),
-                        100,
-                        100
-                      )
-                    )         
-                  )
+        const popupBody = document.getElementsByClassName("popup-body")[0]; 
+        const languageItem = event.nativeEvent.target as HTMLImageElement;
+
+        const popupMainContent = document.createElement("div");
+        popupMainContent.classList.add("popup-flags-carousel");
+        popupMainContent.addEventListener("wheel", (event) => {
+          event.stopPropagation();
+          event.preventDefault();
+          popupMainContent.scrollLeft += event.deltaX + event.deltaY;
+        });
+
+        languageSelector.getAllLanguages().forEach(
+          _language => {
+            const popupFlagIconContainer = document.createElement("div");
+            const popupFlagIcon = document.createElement("img");
+            popupFlagIconContainer.className = "custom-image-container";
+            popupFlagIcon.classList.add("custom-image");
+            popupFlagIcon.classList.add("custom-image");
+            popupFlagIcon.src = "/images/flags/" + _language.getFlagIconName();
+            popupFlagIcon.alt = _language.getTranslatedSelectLanguageString();
+            popupFlagIcon.width = 100;
+            popupFlagIcon.height = 100;
+            popupFlagIcon.addEventListener("click", (event) => {
+              router.replace(
+                {
+                  pathname: "/",
+                  query: {
+                    lan: _language.getLanguageId()
+                  }
                 }
-              )
-            }
-          </div>
-
-          const popupMainContent = document.createElement("div");
-          popupMainContent.innerHTML = "";
-
-          const popupSecondaryContent = document.createElement("div");
-          popupSecondaryContent.className = "popup-secondary-content";
-          popupSecondaryContent.innerHTML = "<p>" + languageItem.alt + "</p>";
-          
-          popupBody.innerHTML = "";
-          popupBody.appendChild(popupMainContent);
-          popupBody.appendChild(popupSecondaryContent);
+              );
+              setShowModal(false)
+            });
+            
+            popupFlagIconContainer.append(popupFlagIcon);
+            popupMainContent.append(popupFlagIconContainer);
+          }
+        )
+        const popupSecondaryContent = document.createElement("div");
+        popupSecondaryContent.classList.add("popup-secondary-content");
+        popupSecondaryContent.classList.add("popup-language-text");
+        popupSecondaryContent.innerHTML = "<p>" + languageItem.alt + "</p>";
+        
+        popupBody.innerHTML = "";
+        popupBody.appendChild(popupMainContent);
+        popupBody.appendChild(popupSecondaryContent);
       })
     }
   )
+  
+  const startTimerButton = new NavbarButton(
+    new CustomImageProps(
+      "/images/timer.png",
+      language.getTranslatedStartTimerString(),
+      100, 
+      100
+    ),
+    (event) => {
+      event.stopPropagation();
+
+      setShowModal(true);
+
+      window.requestAnimationFrame(() => {
+        const popupBody = document.getElementsByClassName("popup-body")[0]; 
+        const languageItem = event.nativeEvent.target as HTMLImageElement;
+
+        const popupMainContent = document.createElement("div");
+
+        const popupSecondaryContent = document.createElement("div");
+        popupSecondaryContent.classList.add("popup-secondary-content");
+        popupSecondaryContent.classList.add("popup-language-text");
+        popupSecondaryContent.innerHTML = "<p>" + languageItem.alt + "</p>";
+        
+        popupBody.innerHTML = "";
+        popupBody.appendChild(popupMainContent);
+        popupBody.appendChild(popupSecondaryContent);
+      });
+    }
+  );
 
   const navbar = CustomNavbarComponent(
     new CustomNavbarComponentProps(
       [
-        languageSelectionButton
+        languageSelectionButton,
+        startTimerButton
       ]
     )
   );
-  
+
   return (
     <>
       <Head key={1234}>
@@ -114,7 +159,8 @@ export default function Home() {
       {translatedAllergens}
 
       <div id="popup-root">
-        <Popup show={showModal} onClose={() => setShowModal(false)}/>
+        <Popup show={showModal} onClose={() => setShowModal(false)}>
+        </Popup>
       </div>
     </>
   )

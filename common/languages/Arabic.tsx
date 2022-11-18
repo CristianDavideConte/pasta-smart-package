@@ -8,12 +8,20 @@ import ILanguage from "./ILanguage";
 class Arabic implements ILanguage {
     constructor() {}
     
+    getLanguageId() : string {
+        return "arb";
+    }
+
     getFlagIconName = () => {
-        return "arb.png";
+        return this.getLanguageId() + ".png";
     }
 
     getTranslatedSelectLanguageString = () => {
         return "اختر لغة";
+    }
+
+    getTranslatedStartTimerString = () => {
+        return "بداية";
     }
 
     getTranslatedLabel = () => CustomLabelComponent(

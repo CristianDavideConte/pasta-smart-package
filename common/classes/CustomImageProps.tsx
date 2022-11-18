@@ -24,7 +24,7 @@ class CustomImageProps {
         this.height = height;
         this.isDescriptionShown = isDescriptionShown;
         this.additionalClassNames = [];
-        this.key = Math.round(4.7 * Math.random() + 5.3 * Math.random());
+        this.key = Math.round(4.7 * Math.random() + 5.3 * Math.random() + Math.random() * Date.now() + Math.random() * Date.now());
         this.onClick = () => {};
     }
 
@@ -51,8 +51,8 @@ class CustomImageProps {
         return this.onClick;
     }
     
-    setOnClick(onclick: MouseEventHandler<HTMLDivElement>) {
-        this.onClick = onclick;
+    setOnClick(onClick: MouseEventHandler<HTMLDivElement>) {
+        this.onClick = onClick;
     }
 
     addClassName(name: string) {

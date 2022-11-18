@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
-const Popup = ({ show, onClose}) => {
+const Popup = ({ show, onClose, children}) => {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
@@ -14,13 +14,16 @@ const Popup = ({ show, onClose}) => {
   };
 
   const popupContent = show ? (
-    <div className="popup-overlay" onClick={handleCloseClick}>
-      <div className="popup" onClick={(e)=> {e.stopPropagation()}}>
-        <div className="popup-header">
+    <>
+      <div className="popup-overlay" onClick={handleCloseClick}></div>
+      <div className="popup">
+        <div className="popup-body">
+          {
+            children
+          }
         </div>
-        <div className="popup-body"></div>
       </div>
-    </div>
+    </>
   ) : null;
 
   if (isBrowser) {
