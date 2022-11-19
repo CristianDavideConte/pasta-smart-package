@@ -1,5 +1,12 @@
 import { MouseEventHandler } from "react";
 
+/**
+ * IMAGES_REPO_PATH should be:
+ * "/pasta-smart-package" for deployment on github pages
+ * "" for testing 
+ */ 
+export const IMAGES_REPO_PATH: string = "/pasta-smart-package"; 
+
 /* eslint-disable @next/next/no-img-element */
 class CustomImageProps {
     private key: number;
@@ -18,7 +25,7 @@ class CustomImageProps {
         height: number, 
         isDescriptionShown: boolean = false,
     ) {
-        this.path = path;
+        this.path = IMAGES_REPO_PATH + path;
         this.description = description;
         this.width = width;
         this.height = height;

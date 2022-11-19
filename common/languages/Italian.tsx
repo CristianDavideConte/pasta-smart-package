@@ -53,15 +53,15 @@ class Italian implements ILanguage {
             [
                 new Allergen(
                     "Glutine",
-                    "/pasta-smart-package/public/images/gluten.png"
+                    "/images/gluten.png"
                 ),
                 new Allergen(
                     "Soia",
-                    "/pasta-smart-package/images/soy.png"
+                    "/images/soy.png"
                 ),
                 new Allergen(
                     "Senape",
-                    "/pasta-smart-package/public/images/mustard.png"
+                    "/images/mustard.png"
                 )
             ],
             (event) => {

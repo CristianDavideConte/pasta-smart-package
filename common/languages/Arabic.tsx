@@ -53,15 +53,15 @@ class Arabic implements ILanguage {
             [
                 new Allergen(
                     "الغولتين",
-                    "../images/gluten.png"
+                    "/images/gluten.png"
                 ),
                 new Allergen(
                     "الصويا",
-                    "../images/soy.png"
+                    "/images/soy.png"
                 ),
                 new Allergen(
                     "خردل",
-                    "../images/mustard.png"
+                    "/images/mustard.png"
                 )
             ],
             (event) => {

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-sync-scripts */
 import Head from 'next/head'
 
-import CustomImageProps from '../common/classes/CustomImageProps'
+import CustomImageProps, { IMAGES_REPO_PATH } from '../common/classes/CustomImageProps'
 import CustomImagesCarouselProps from '../common/classes/CustomImagesCarouselProps'
 import CustomImagesCarouselComponent from '../common/components/CustomImagesCarouselComponent'
 import Popup from '../common/classes/Popup'
@@ -38,7 +38,7 @@ export default function Home() {
   const testProps = new Array(4);
   testProps.fill(
     new CustomImageProps(
-      "/images/pasta.png", 
+      IMAGES_REPO_PATH + "/images/pasta.png", 
       "Test description",
       100, 
       100
@@ -65,7 +65,7 @@ export default function Home() {
 
   const languageSelectionButton = new NavbarButton(
     new CustomImageProps(
-      "/images/flags/" + language.getFlagIconName(),
+      IMAGES_REPO_PATH + "/images/flags/" + language.getFlagIconName(),
       language.getTranslatedSelectLanguageString(),
       100, 
       100
@@ -94,7 +94,7 @@ export default function Home() {
             popupFlagIconContainer.className = "custom-image-container";
             popupFlagIcon.classList.add("custom-image");
             popupFlagIcon.classList.add("custom-image");
-            popupFlagIcon.src = "/images/flags/" + _language.getFlagIconName();
+            popupFlagIcon.src = IMAGES_REPO_PATH + "/images/flags/" + _language.getFlagIconName();
             popupFlagIcon.alt = _language.getTranslatedSelectLanguageString();
             popupFlagIcon.width = 100;
             popupFlagIcon.height = 100;
@@ -128,7 +128,7 @@ export default function Home() {
   
   const timerButton = new NavbarButton(
     new CustomImageProps(
-      "/images/timer.png",
+      IMAGES_REPO_PATH + "/images/timer.png",
       language.getTranslatedStartTimerString(),
       100, 
       100
@@ -158,16 +158,17 @@ export default function Home() {
           resumeTimerButton.classList.add("custom-timer-button");
           restartTimerButton.classList.add("custom-timer-button");
           
-          resumeTimerButtonIcon.src = timer.isRunning() ? "/images/timer/pause.png" : "/images/timer/play.png";
-          restartTimerButtonIcon.src = "/images/timer/reset.png";
+          resumeTimerButtonIcon.src = timer.isRunning() ? IMAGES_REPO_PATH + "/images/timer/pause.png" : 
+                                                          IMAGES_REPO_PATH + "/images/timer/play.png";
+          restartTimerButtonIcon.src = IMAGES_REPO_PATH + "/images/timer/reset.png";
 
           resumeTimerButton.addEventListener("click", () => {
             if(timer.isRunning()) {
               timer.pause();
-              resumeTimerButtonIcon.src = "/images/timer/play.png";
+              resumeTimerButtonIcon.src = IMAGES_REPO_PATH + "/images/timer/play.png";
             } else {
               timer.resume();
-              resumeTimerButtonIcon.src = "/images/timer/pause.png";
+              resumeTimerButtonIcon.src = IMAGES_REPO_PATH + "/images/timer/pause.png";
             }
           });
 

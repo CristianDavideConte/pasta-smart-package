@@ -53,15 +53,15 @@ class French implements ILanguage {
             [
                 new Allergen(
                     "Gluten",
-                    "../images/gluten.png"
+                    "/images/gluten.png"
                 ),
                 new Allergen(
                     "Soja",
-                    "../images/soy.png"
+                    "/images/soy.png"
                 ),
                 new Allergen(
                     "Moutarde",
-                    "../images/mustard.png"
+                    "/images/mustard.png"
                 )
             ],
             (event) => {

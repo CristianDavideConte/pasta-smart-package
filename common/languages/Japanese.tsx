@@ -54,15 +54,15 @@ class Japanese implements ILanguage {
             [
                 new Allergen(
                     "グルテン",
-                    "../images/gluten.png"
+                    "/images/gluten.png"
                 ),
                 new Allergen(
                     "大豆",
-                    "../images/soy.png"
+                    "/images/soy.png"
                 ),
                 new Allergen(
                     "マスタード",
-                    "../images/mustard.png"
+                    "/images/mustard.png"
                 )
             ],
             (event) => {
