@@ -53,15 +53,15 @@ class Italian implements ILanguage {
             [
                 new Allergen(
                     "Glutine",
-                    "../images/gluten.png"
+                    "/public/images/gluten.png"
                 ),
                 new Allergen(
                     "Soia",
-                    "../images/soy.png"
+                    "/public/images/soy.png"
                 ),
                 new Allergen(
                     "Senape",
-                    "../images/mustard.png"
+                    "/public/images/mustard.png"
                 )
             ],
             (event) => {
