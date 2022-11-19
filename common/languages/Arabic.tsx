@@ -52,24 +52,16 @@ class Arabic implements ILanguage {
         new AllergensCollectionProps(
             [
                 new Allergen(
-                    "بيضة",
-                    "../images/eggs.png"
-                ),
-                new Allergen(
-                    "سمك",
-                    "../images/fish.png"
-                ),
-                new Allergen(
-                    "الرخويات",
-                    "../images/shellfish.png"
-                ),
-                new Allergen(
                     "الغولتين",
                     "../images/gluten.png"
                 ),
                 new Allergen(
-                    "المكسرات",
-                    "../images/nuts.png"
+                    "الصويا",
+                    "../images/soy.png"
+                ),
+                new Allergen(
+                    "خردل",
+                    "../images/mustard.png"
                 )
             ],
             (event) => {

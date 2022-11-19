@@ -7,8 +7,14 @@
   }
 }
 
+@keyframes timer-finished-animation {
+  from {
+    opacity: 0;
+  }
+}
+
 :root{
-  --number-of-allergens: 5;
+  --number-of-allergens: 3;
   --number-of-languages: 7;
 
   --color-barilla-blue-light: rgba(67, 126, 218, 1);
@@ -181,7 +187,6 @@ button {
   height: 70%;
   padding-left: 3rem;
   margin: auto;
-  scroll-behavior: smooth;
 }
 
 .popup-flags-carousel > .custom-image-container {
@@ -196,6 +201,9 @@ button {
 }
 
 .popup-secondary-content {
+  display: grid;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   font-size: 300%;
 }
@@ -207,6 +215,84 @@ button {
 
 .popup-language-text > p {
   font-size: 6.3vmin;
+}
+
+.popup-body > #custom-timer-container {
+  box-shadow: var(--card-shadows-inset);
+  border-radius: var(--card-border-radius);
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  height: 70%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 2fr 0fr 2fr;
+}
+
+.popup-body > #custom-timer-container > p {
+  margin: 0;
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-size: 15vmin;
+  text-shadow: var(--text-shadow);
+}
+
+.custom-timer-buttons-container {
+  margin: auto;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.custom-timer-finished > #custom-timer-container > p{
+  animation: timer-finished-animation 0.3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.custom-timer-finished > .custom-timer-buttons-container {
+  justify-content: center;
+}
+
+.custom-timer-finished > .custom-timer-buttons-container > #custom-timer-button-resume {
+  display: none;
+}
+
+.custom-timer-finished > .custom-timer-buttons-container > #custom-timer-button-restart {
+  transition: 0s;
+  width: 70%;
+}
+
+.custom-timer-button {
+  background: var(--card-color);
+  box-shadow: var(--card-shadows-all-buttons);
+  border-radius: var(--carousel-button-border-radius);
+  cursor: pointer;
+  background-color: transparent;
+  flex-shrink: 0;
+  width: 40%;
+  height: 60%;
+  transition: all 0.2s;
+}
+
+.custom-timer-button > img {
+  width: 2.2em;
+  height: 2.2em;
+  transition: all 0.2s;
+  filter: invert(100%)
+}
+
+.custom-timer-button:active {
+  background: var(--color-barilla-blue-darkest);
+  box-shadow: var(--card-shadows-all-buttons-active);
+}
+
+.custom-timer-button:active > * {
+  transform: scale(0.85);
 }
 
 #navbar {
@@ -463,12 +549,13 @@ table {
   border-radius: var(--card-border-radius);
   overflow: scroll hidden;
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(var(--number-of-allergens), 1fr);
-  max-width: 80vw;
+  max-width: 90%;
   height: 15%;
   padding-left: 1rem;
   margin: auto;
-  scroll-behavior: smooth;
+  box-sizing: border-box;
 }
 
 .allergen-icon {

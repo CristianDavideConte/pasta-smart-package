@@ -53,24 +53,16 @@ class Japanese implements ILanguage {
         new AllergensCollectionProps(
             [
                 new Allergen(
-                    "卵",
-                    "../images/eggs.png"
-                ),
-                new Allergen(
-                    "魚",
-                    "../images/fish.png"
-                ),
-                new Allergen(
-                    "二枚貝",
-                    "../images/shellfish.png"
-                ),
-                new Allergen(
                     "グルテン",
                     "../images/gluten.png"
                 ),
                 new Allergen(
-                    "ナッツ",
-                    "../images/nuts.png"
+                    "大豆",
+                    "../images/soy.png"
+                ),
+                new Allergen(
+                    "マスタード",
+                    "../images/mustard.png"
                 )
             ],
             (event) => {

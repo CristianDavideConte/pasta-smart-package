@@ -6,7 +6,6 @@ const AllergensCollectionComponent = (props: AllergensCollectionProps) => {
     const scrollOnWheel = (event) => {
         event.stopPropagation();
         event.preventDefault();
-        console.log(event.target)
         const el = document.getElementById("allergens-icons-container");
         
         if(!el) return;

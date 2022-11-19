@@ -11,6 +11,27 @@ import { useRouter } from 'next/router'
 import NavbarButton from '../common/classes/NavbarButton'
 import CustomNavbarComponentProps from '../common/classes/CustomNavbarComponentProps'
 import CustomNavbarComponent from '../common/components/CustomNavbarComponent'
+import CustomTimer from '../common/classes/CustomTimer'
+
+const timer = new CustomTimer(
+  9, 
+  0,
+  (remaningTime: number) => {
+    const popupBody = document.getElementsByClassName("popup-body")[0];
+    const customTimerContainer = document.getElementById("custom-timer-container");
+
+    if(!popupBody || !customTimerContainer) {
+      return;
+    }
+    
+    popupBody.removeChild(customTimerContainer);
+    popupBody.insertBefore(timer.getDisplayedTime(), popupBody.firstChild);
+    
+    if(remaningTime <= 0) {
+      popupBody.classList.add("custom-timer-finished");
+    }
+  }
+);
 
 export default function Home() {
 
@@ -31,13 +52,12 @@ export default function Home() {
   );
 
   const [showModal, setShowModal] = useState(false);
-  
+
   const router = useRouter();
   const languageURLIdentifier = "lan";
   const languageURLString = typeof router.query[languageURLIdentifier] === "string" ? router.query[languageURLIdentifier] :
                             router.query[languageURLIdentifier]?.length ? router.query[languageURLIdentifier][0] : 
                             "ita"; 
-  
   const languageSelector = new LanguageSelector(languageURLString);
   const language = languageSelector.getLanguage();
   const translatedLabel = language.getTranslatedLabel();
@@ -106,7 +126,7 @@ export default function Home() {
     }
   )
   
-  const startTimerButton = new NavbarButton(
+  const timerButton = new NavbarButton(
     new CustomImageProps(
       "/images/timer.png",
       language.getTranslatedStartTimerString(),
@@ -120,18 +140,74 @@ export default function Home() {
 
       window.requestAnimationFrame(() => {
         const popupBody = document.getElementsByClassName("popup-body")[0]; 
-        const languageItem = event.nativeEvent.target as HTMLImageElement;
 
-        const popupMainContent = document.createElement("div");
+        const popupMainContent = timer.getDisplayedTime();
 
-        const popupSecondaryContent = document.createElement("div");
-        popupSecondaryContent.classList.add("popup-secondary-content");
-        popupSecondaryContent.classList.add("popup-language-text");
-        popupSecondaryContent.innerHTML = "<p>" + languageItem.alt + "</p>";
-        
+        const getSecondaryContent = () => {
+          const customTimerButtonsContainer = document.createElement("div");
+          const resumeTimerButton = document.createElement("button");
+          const restartTimerButton = document.createElement("button");
+          const resumeTimerButtonIcon = document.createElement("img");
+          const restartTimerButtonIcon = document.createElement("img");
+          
+          resumeTimerButton.id = "custom-timer-button-resume";
+          restartTimerButton.id = "custom-timer-button-restart";
+          
+          customTimerButtonsContainer.classList.add("popup-secondary-content");
+          customTimerButtonsContainer.classList.add("custom-timer-buttons-container");
+          resumeTimerButton.classList.add("custom-timer-button");
+          restartTimerButton.classList.add("custom-timer-button");
+          
+          resumeTimerButtonIcon.src = timer.isRunning() ? "/images/timer/pause.png" : "/images/timer/play.png";
+          restartTimerButtonIcon.src = "/images/timer/reset.png";
+
+          resumeTimerButton.addEventListener("click", () => {
+            if(timer.isRunning()) {
+              timer.pause();
+              resumeTimerButtonIcon.src = "/images/timer/play.png";
+            } else {
+              timer.resume();
+              resumeTimerButtonIcon.src = "/images/timer/pause.png";
+            }
+          });
+
+          restartTimerButton.addEventListener("click", () => {
+            timer.reset();
+            
+            popupBody.classList.remove("custom-timer-finished");
+            popupBody.innerHTML = "";
+            popupBody.appendChild(timer.getDisplayedTime());
+            popupBody.appendChild(getSecondaryContent());
+          });
+          
+          restartTimerButton.addEventListener("contextmenu", (event) => {
+            event.preventDefault();
+            timer.activateDemoMode();
+            popupBody.classList.remove("custom-timer-finished");
+            popupBody.innerHTML = "";
+            popupBody.appendChild(timer.getDisplayedTime());
+            popupBody.appendChild(getSecondaryContent());
+          });
+
+          resumeTimerButton.appendChild(resumeTimerButtonIcon);
+          restartTimerButton.appendChild(restartTimerButtonIcon);
+          
+          if(timer.getRemaningTime() > 0) {
+            customTimerButtonsContainer.appendChild(resumeTimerButton);
+          } 
+          customTimerButtonsContainer.appendChild(restartTimerButton);
+          
+          return customTimerButtonsContainer;
+        }
+
+        const popupSecondaryContent = getSecondaryContent();
         popupBody.innerHTML = "";
         popupBody.appendChild(popupMainContent);
         popupBody.appendChild(popupSecondaryContent);
+        
+        if(timer.getRemaningTime() <= 0) {
+          popupBody.classList.add("custom-timer-finished");
+        }
       });
     }
   );
@@ -140,7 +216,7 @@ export default function Home() {
     new CustomNavbarComponentProps(
       [
         languageSelectionButton,
-        startTimerButton
+        timerButton
       ]
     )
   );

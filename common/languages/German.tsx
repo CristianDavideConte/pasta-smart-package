@@ -52,24 +52,16 @@ class German implements ILanguage {
         new AllergensCollectionProps(
             [
                 new Allergen(
-                    "Ei",
-                    "../images/eggs.png"
-                ),
-                new Allergen(
-                    "Fische",
-                    "../images/fish.png"
-                ),
-                new Allergen(
-                    "Venusmuscheln",
-                    "../images/shellfish.png"
-                ),
-                new Allergen(
                     "Gluten",
                     "../images/gluten.png"
                 ),
                 new Allergen(
-                    "Nüsse",
-                    "../images/nuts.png"
+                    "Soja",
+                    "../images/soy.png"
+                ),
+                new Allergen(
+                    "Senf",
+                    "../images/mustard.png"
                 )
             ],
             (event) => {

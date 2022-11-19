@@ -52,24 +52,16 @@ class English implements ILanguage {
         new AllergensCollectionProps(
             [
                 new Allergen(
-                    "Eggs",
-                    "../images/eggs.png"
-                ),
-                new Allergen(
-                    "Fish",
-                    "../images/fish.png"
-                ),
-                new Allergen(
-                    "Shellfish",
-                    "../images/shellfish.png"
-                ),
-                new Allergen(
                     "Gluten",
                     "../images/gluten.png"
                 ),
                 new Allergen(
-                    "Nuts",
-                    "../images/nuts.png"
+                    "Soy",
+                    "../images/soy.png"
+                ),
+                new Allergen(
+                    "Mustard",
+                    "../images/mustard.png"
                 )
             ],
             (event) => {

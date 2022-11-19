@@ -52,24 +52,16 @@ class French implements ILanguage {
         new AllergensCollectionProps(
             [
                 new Allergen(
-                    "Oeufs",
-                    "../images/eggs.png"
-                ),
-                new Allergen(
-                    "Poinsson",
-                    "../images/fish.png"
-                ),
-                new Allergen(
-                    "Palourdes",
-                    "../images/shellfish.png"
-                ),
-                new Allergen(
                     "Gluten",
                     "../images/gluten.png"
                 ),
                 new Allergen(
-                    "Noisettes",
-                    "../images/nuts.png"
+                    "Soja",
+                    "../images/soy.png"
+                ),
+                new Allergen(
+                    "Moutarde",
+                    "../images/mustard.png"
                 )
             ],
             (event) => {

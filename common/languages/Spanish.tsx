@@ -52,24 +52,16 @@ class Italian implements ILanguage {
         new AllergensCollectionProps(
             [
                 new Allergen(
-                    "Huevo",
-                    "../images/eggs.png"
-                ),
-                new Allergen(
-                    "Pez",
-                    "../images/fish.png"
-                ),
-                new Allergen(
-                    "Almejas",
-                    "../images/shellfish.png"
-                ),
-                new Allergen(
                     "Gluten",
                     "../images/gluten.png"
                 ),
                 new Allergen(
-                    "Nueces",
-                    "../images/nuts.png"
+                    "Soja",
+                    "../images/soy.png"
+                ),
+                new Allergen(
+                    "Mostaza",
+                    "../images/mustard.png"
                 )
             ],
             (event) => {
