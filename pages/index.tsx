@@ -38,7 +38,7 @@ export default function Home() {
   const testProps = new Array(4);
   testProps.fill(
     new CustomImageProps(
-      IMAGES_REPO_PATH + "/images/pasta.png", 
+      "/images/pasta.png", 
       "Test description",
       100, 
       100
@@ -65,7 +65,7 @@ export default function Home() {
 
   const languageSelectionButton = new NavbarButton(
     new CustomImageProps(
-      IMAGES_REPO_PATH + "/images/flags/" + language.getFlagIconName(),
+      "/images/flags/" + language.getFlagIconName(),
       language.getTranslatedSelectLanguageString(),
       100, 
       100
@@ -128,7 +128,7 @@ export default function Home() {
   
   const timerButton = new NavbarButton(
     new CustomImageProps(
-      IMAGES_REPO_PATH + "/images/timer.png",
+      "/images/timer.png",
       language.getTranslatedStartTimerString(),
       100, 
       100
