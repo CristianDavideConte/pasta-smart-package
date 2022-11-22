@@ -149,6 +149,7 @@ export default function Home() {
           const restartTimerButton = document.createElement("button");
           const resumeTimerButtonIcon = document.createElement("img");
           const restartTimerButtonIcon = document.createElement("img");
+          let timeoutID: NodeJS.Timeout;
           
           resumeTimerButton.id = "custom-timer-button-resume";
           restartTimerButton.id = "custom-timer-button-restart";
@@ -172,17 +173,30 @@ export default function Home() {
             }
           });
 
+          restartTimerButton.addEventListener("touchstart", () => {
+            timeoutID = setTimeout(() => {
+              timer.activateDemoMode();
+              popupBody.classList.remove("custom-timer-finished");
+              popupBody.innerHTML = "";
+              popupBody.appendChild(timer.getDisplayedTime());
+              popupBody.appendChild(getSecondaryContent());
+            }, 400);
+          });
+
           restartTimerButton.addEventListener("click", () => {
             timer.reset();
             
+            clearTimeout(timeoutID);
             popupBody.classList.remove("custom-timer-finished");
             popupBody.innerHTML = "";
             popupBody.appendChild(timer.getDisplayedTime());
             popupBody.appendChild(getSecondaryContent());
           });
-          
+
           restartTimerButton.addEventListener("contextmenu", (event) => {
             event.preventDefault();
+            
+            clearTimeout(timeoutID);
             timer.activateDemoMode();
             popupBody.classList.remove("custom-timer-finished");
             popupBody.innerHTML = "";
