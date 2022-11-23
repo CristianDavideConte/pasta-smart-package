@@ -35,15 +35,25 @@ const timer = new CustomTimer(
 
 export default function Home() {
 
-  const testProps = new Array(4);
-  testProps.fill(
+  const testProps = new Array(2);
+  testProps.push(
     new CustomImageProps(
-      "/images/pasta.png", 
-      "Test description",
-      100, 
-      100
+      "/images/carousel/pasta.png", 
+      "Pasta",
+      150, 
+      150
     )
   );
+
+  testProps.push(
+    new CustomImageProps(
+      "/images/logo/logo_no_bg_2.png", 
+      "Packaging Lintes Logo",
+      220, 
+      220
+    )
+  );
+
 
   const carousel = CustomImagesCarouselComponent(
     new CustomImagesCarouselProps(

@@ -5,7 +5,7 @@ import { MouseEventHandler } from "react";
  * "/pasta-smart-package" for deployment on github pages
  * "" for testing 
  */ 
-export const IMAGES_REPO_PATH: string = "/pasta-smart-package"; 
+export const IMAGES_REPO_PATH: string = ""//"/pasta-smart-package"; 
 
 /* eslint-disable @next/next/no-img-element */
 class CustomImageProps {
