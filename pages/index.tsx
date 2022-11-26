@@ -35,13 +35,22 @@ const timer = new CustomTimer(
 
 export default function Home() {
 
-  const testProps = new Array(2);
+  const testProps = new Array();
   testProps.push(
     new CustomImageProps(
-      "/images/carousel/pasta.png", 
+      "/images/carousel/pasta_box_side_1.png", 
       "Pasta",
-      150, 
-      150
+      170, 
+      246
+    )
+  );
+  
+  testProps.push(
+    new CustomImageProps(
+      "/images/carousel/pasta_box_side_2.png", 
+      "Pasta",
+      170, 
+      246
     )
   );
 
