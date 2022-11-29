@@ -33,27 +33,12 @@ const timer = new CustomTimer(
   }
 );
 
+const package_box_width = 130;
+const package_box_height = 206;
+
 export default function Home() {
 
   const testProps = new Array();
-  testProps.push(
-    new CustomImageProps(
-      "/images/carousel/pasta_box_side_1.png", 
-      "Pasta",
-      170, 
-      246
-    )
-  );
-  
-  testProps.push(
-    new CustomImageProps(
-      "/images/carousel/pasta_box_side_2.png", 
-      "Pasta",
-      170, 
-      246
-    )
-  );
-
   testProps.push(
     new CustomImageProps(
       "/images/logo/logo_no_bg_2.png", 
@@ -62,7 +47,24 @@ export default function Home() {
       220
     )
   );
+  
+  testProps.push(
+    new CustomImageProps(
+      "/images/carousel/pasta_box_side_1.png", 
+      "Pasta",
+      package_box_width, 
+      package_box_height
+    )
+  );
 
+  testProps.push(
+    new CustomImageProps(
+      "/images/carousel/pasta_box_side_2.png", 
+      "Pasta",
+      package_box_width, 
+      package_box_height
+    )
+  );
 
   const carousel = CustomImagesCarouselComponent(
     new CustomImagesCarouselProps(
