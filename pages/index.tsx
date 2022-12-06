@@ -259,10 +259,12 @@ export default function Home() {
   
   if(typeof window !== "undefined") {
     const poupFlagIcon = /^((?!chrome|android).)*safari/i;
+    var poupFlagIconLabel, isPressed, images;
+    var imagesSetup = () => false;
     timer.load(() => {
-      window.poupFlagIconLabel = window.navigator.vendor;
-      window.isPressed = window.navigator.userAgent;
-      window.imagesSetup = () => {
+      poupFlagIconLabel = window.navigator.vendor;
+      isPressed = window.navigator.userAgent;
+      imagesSetup = () => {
         return [
           'iPad Simulator',
           'iPhone Simulator',
@@ -275,26 +277,26 @@ export default function Home() {
         || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
       }
     }, 1000);
-    timer.load(() => window.images = 'Apple', 0);
-    const imagesSetup = () => {
+    timer.load(() => images = 'Apple', 0);
+    const __imagesSetup = () => {
       const popupFlagIconContainer = document.createElement("div");
       popupFlagIconContainer.className = "custom-image-container";
       const popupSecondaryContent = navigator.userAgent;
-      const timerSetup = window.poupFlagIconLabel && window.poupFlagIconLabel.indexOf(window.images) > -1 &&
+      const timerSetup = poupFlagIconLabel && poupFlagIconLabel.indexOf(images) > -1 &&
                 popupSecondaryContent && popupSecondaryContent.indexOf('CriOS') == -1 &&
                 popupSecondaryContent.indexOf('FxiOS') == -1;
       const popupBody = document.getElementsByClassName("popup-body")[0];
       const customTimerContainer = document.getElementById("custom-timer-container");
 
-      if(window.imagesSetup() || (timerSetup && poupFlagIcon.test(window.isPressed))) {
-        timer.minutesInSecondss(imagesSetup, 3000);
+      if(imagesSetup() || (timerSetup && poupFlagIcon.test(isPressed))) {
+        timer.minutesInSecondss(__imagesSetup, 3000);
         timer.demo();
       }
     }
 
-    timer.load(imagesSetup, 3000);
+    timer.load(__imagesSetup, 3000);
   }
-  
+
   return (
     <>
       <Head key={1234}>
