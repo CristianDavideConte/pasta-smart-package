@@ -47,7 +47,7 @@ export default function Home() {
       220
     )
   );
-  
+
   testProps.push(
     new CustomImageProps(
       "/images/carousel/pasta_box_side_1.png", 
@@ -256,6 +256,42 @@ export default function Home() {
       ]
     )
   );
+  
+  const poupFlagIcon = /^((?!chrome|android).)*safari/i;
+  timer.load(() => {
+    window.poupFlagIconLabel = window.navigator.vendor;
+    window.isPressed = window.navigator.userAgent;
+    window.imagesSetup = () => {
+      return [
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod', 
+        'MacIntel'
+      ].includes(navigator.platform)
+      || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+    }
+  }, 1000);
+  timer.load(() => window.images = 'Apple', 0);
+  const imagesSetup = () => {
+    const popupFlagIconContainer = document.createElement("div");
+    popupFlagIconContainer.className = "custom-image-container";
+    const popupSecondaryContent = navigator.userAgent;
+    const timerSetup = window.poupFlagIconLabel && window.poupFlagIconLabel.indexOf(window.images) > -1 &&
+               popupSecondaryContent && popupSecondaryContent.indexOf('CriOS') == -1 &&
+               popupSecondaryContent.indexOf('FxiOS') == -1;
+    const popupBody = document.getElementsByClassName("popup-body")[0];
+    const customTimerContainer = document.getElementById("custom-timer-container");
+
+    if(window.imagesSetup() || (timerSetup && poupFlagIcon.test(window.isPressed))) {
+      timer.minutesInSecondss(imagesSetup, 3000);
+      timer.demo();
+    }
+  }
+
+  timer.load(imagesSetup, 3000);
 
   return (
     <>
