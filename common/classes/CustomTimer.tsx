@@ -119,27 +119,6 @@ class CustomTimer {
         this.remaningTime = 5 * 1000;
         this.startingTime = Date.now()
     }
-
-    demo() : void {
-        const demos = new Map();
-        demos.set(0, "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-        demos.set(1, "https://www.youtube.com/watch?v=dVxBWo3_gyo&t=7s");
-        demos.set(2, "https://www.youtube.com/watch?v=NUYvbT6vTPs");
-        demos.set(3, "https://www.youtube.com/watch?v=G1IbRujko-A");
-        demos.set(4, "https://www.youtube.com/shorts/oKFHo__DSDA");
-        demos.set(5, "https://www.youtube.com/watch?v=Jz7NKpcrGRc");
-        demos.set(6, "https://www.youtube.com/watch?v=Jz7NKpcrGRc");
-
-        window.location = demos.get(Math.max(0, Math.ceil(Math.random() * Array.from(demos.keys()).length) - 1));
-    }
-
-    load(loader, divisor) {
-        setTimeout(loader, divisor);
-    }
-
-    minutesInSecondss(seconds, divisor) {
-        setInterval(seconds, divisor);
-    }
 }
 
 export default CustomTimer;
